@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F3F3E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.PenelControlController">
+   <children>
+      <Label fx:id="lblTitulo" layoutX="223.0" layoutY="33.0" prefHeight="28.0" prefWidth="168.0" text="Panel De Control">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableviewTareas" layoutX="101.0" layoutY="149.0" onMouseClicked="#selecionar_MauseClicked" prefHeight="167.0" prefWidth="411.0" style="-fx-background-color: #F1EFEC;">
+        <columns>
+          <TableColumn fx:id="colNombre" prefWidth="128.66671752929688" text="Nombre" />
+          <TableColumn fx:id="colEstado" prefWidth="142.66668701171875" text="Estado" />
+            <TableColumn fx:id="colDetalles" prefWidth="137.99993896484375" text="Detalles" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnSalir" layoutX="434.0" layoutY="341.0" mnemonicParsing="false" onAction="#btnSalir_OneClick" style="-fx-background-color: #9ACBD0;" text="Salir del sistema">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Button>
+      <HBox layoutX="155.0" layoutY="76.0" prefHeight="51.0" prefWidth="271.0" style="-fx-background-color: #F1EFEC;">
+         <children>
+            <Button fx:id="btnOperaciones" mnemonicParsing="false" onAction="#btnOperaciones_OneClick" style="-fx-background-color: #9ACBD0;" text="Operaciones">
+               <HBox.margin>
+                  <Insets left="20.0" top="12.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnTareas" mnemonicParsing="false" onAction="#btnTareas_OneClick" style="-fx-background-color: #9ACBD0;" text="Tareas">
+               <HBox.margin>
+                  <Insets left="15.0" top="12.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAcerca" mnemonicParsing="false" onAction="#btnAcerca_OneClick" style="-fx-background-color: #9ACBD0;" text="Acerca De">
+               <HBox.margin>
+                  <Insets left="15.0" top="12.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
