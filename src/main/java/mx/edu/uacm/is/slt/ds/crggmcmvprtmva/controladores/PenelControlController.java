@@ -2,12 +2,18 @@ package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class PenelControlController {
 
@@ -43,6 +49,17 @@ public class PenelControlController {
 
     @FXML
     void btnAcerca_OneClick(ActionEvent event) {
+
+        try {
+            FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/AcercaDe.fxml"));
+            Parent root = lodaer.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Acerca del Sistema");
+            stage.show();
+        } catch (IOException e){
+
+        }
 
     }
 
