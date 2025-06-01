@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -58,14 +55,31 @@ public class PenelControlController {
             stage.setTitle("Acerca del Sistema");
             stage.show();
         } catch (IOException e){
-
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudo cargar la ventana 'Acerca De'");
+            alert.setContentText("El archivo FXML no se encontró o está corrupto.");
+            alert.showAndWait();
         }
 
     }
 
     @FXML
     void btnOperaciones_OneClick(ActionEvent event) {
-
+        try {
+            FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/EdicionOperaciones.fxml"));
+            Parent root = lodaer.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Operaciones Tarea");
+            stage.show();
+        } catch (IOException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudo cargar la ventana 'Operaciones'");
+            alert.setContentText("El archivo FXML no se encontró o está corrupto.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
