@@ -1,18 +1,24 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Estado;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Operacion;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Tarea;
 
 import java.io.IOException;
 
-public class PenelControlController {
+public class PanelControlController {
 
     @FXML
     private Button btnAcerca;
@@ -26,15 +32,16 @@ public class PenelControlController {
     @FXML
     private Button btnTareas;
 
+    // toma datos segun la variable
     @FXML
-    private TableColumn<?, ?> colDetalles;
+    private TableColumn<Operacion, String> colDetalles;
 
     @FXML
-    private TableColumn<?, ?> colEstado;
+    private TableColumn<Operacion, Estado> colEstado;
 
     @FXML
-    private TableColumn<?, ?> colNombre;
-
+    private TableColumn<Operacion, String> colNombre;
+    // termina aqui
     @FXML
     private Label lblTitulo;
 
@@ -42,7 +49,20 @@ public class PenelControlController {
     private AnchorPane principal;
 
     @FXML
-    private TableView<?> tableviewTareas;
+    private TableView<Operacion> tableviewTareas; // ver tareas con Operacion
+
+    private ObservableList<Operacion> operacionesObservableList;
+
+    @FXML
+    public void initialize() {
+        // Configurar TableView
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colDetalles.setCellValueFactory(new PropertyValueFactory<>("identificador"));
+
+       operacionesObservableList = FXCollections.observableArrayList();
+       tableviewTareas.setItems(operacionesObservableList);
+    }
 
     @FXML
     void btnAcerca_OneClick(ActionEvent event) {
@@ -90,12 +110,18 @@ public class PenelControlController {
 
     @FXML
     void btnTareas_OneClick(ActionEvent event) {
-
+    // aqui la implemetacion y vista de la tarea para crear y editar
     }
 
     @FXML
     void selecionar_MauseClicked(MouseEvent event) {
-
     }
 
+    private void mostrarError(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
 }
