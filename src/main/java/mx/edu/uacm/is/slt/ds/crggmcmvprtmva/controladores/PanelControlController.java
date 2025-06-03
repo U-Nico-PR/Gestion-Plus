@@ -9,7 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class PenelControlController {
+public class PanelControlController {
 
     @FXML
     private Button btnAcerca;
