@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="486.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyec.AcercaDe">
+   <children>
+      <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Acerca  De Gestion Plus&quot;" wrappingWidth="164.13671875" />
+      <Text layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacion Del Sistema:" wrappingWidth="145.982421875" />
+      <Text layoutX="14.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Nombre Del Producto:Gestion Plus&quot;" />
+      <Text layoutX="16.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Identificador Del Producto: mx .edu.uacm.is.slt.ds.crggmcmvprtmva&quot;" wrappingWidth="382.13671875" />
+      <Text layoutX="16.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identificador Del Producto" />
+      <Text layoutX="16.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha De Lanzamiento" wrappingWidth="172.13671875" />
+      <Text layoutX="14.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Fecha De Lanzamiento: 25 abril 2025&quot;" wrappingWidth="347.13671875" />
+      <Text layoutX="14.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version" wrappingWidth="145.982421875" />
+      <Text layoutX="14.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Version: 1.0.0&quot;" wrappingWidth="117.13671875" />
+      <Text layoutX="14.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacion Del Desarrollador" wrappingWidth="207.13671875" />
+      <Text layoutX="14.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Nombre Del Equipo: Corporativo Gemini&quot;" wrappingWidth="233.13671875" />
+      <Text layoutX="14.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Integrantes:" wrappingWidth="193.640625" />
+      <Text layoutX="14.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Desarrolladores:" wrappingWidth="88.13671875" />
+      <Text layoutX="16.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Garcia Galvan Juan Francisco-21-003-1675-Lider" />
+      <Text layoutX="16.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Picazo Reyes Ulises Nicolas-21-003-1604-Lider" />
+      <Text layoutX="16.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Villanueva  Arana Jose Antonio 19-003-0135-Gestión" />
+      <Text layoutX="16.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tello Montes De Oca Ángel Antonio 19-003-0125- Gestión" />
+      <Text layoutX="16.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Martinez Cruz Brandom Manuel 20-011-0331-Gestión" />
+      <Text layoutX="16.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contreras Rueda Marcos Hazel 20-003-1862-Gestión" />
+      <Text layoutX="16.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Molina Vasquez Jonathan 21-003-0383-Gestión" />
+      <Button layoutX="442.0" layoutY="440.0" mnemonicParsing="false" text="Pagina Principal" />
+   </children>
+</AnchorPane>

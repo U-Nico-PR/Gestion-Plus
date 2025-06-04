@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyec.Segundavista">
+   <children>
+      <Text layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tarea: " wrappingWidth="125.13671875" />
+      <Text layoutX="14.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precondiciones" />
+      <TextField layoutX="164.0" layoutY="84.0" prefHeight="25.0" prefWidth="369.0" />
+      <Text layoutX="14.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Postcondiciones" wrappingWidth="96.13671875" />
+      <TextField layoutX="164.0" layoutY="156.0" prefHeight="25.0" prefWidth="369.0" />
+      <Text layoutX="13.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comportamiento (instrucciones)" wrappingWidth="193.13671875" />
+      <TextField layoutX="206.0" layoutY="229.0" prefHeight="25.0" prefWidth="325.0" />
+      <Text layoutX="14.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pausable" wrappingWidth="109.13671875" />
+      <Button fx:id="btnsi" layoutX="181.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Si" />
+      <Button fx:id="btnno" layoutX="321.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="No" />
+      <Button fx:id="btnguardarcambios" layoutX="97.0" layoutY="335.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Guardar Cambio" />
+      <Button fx:id="btncancelar" layoutX="321.0" layoutY="335.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Cancelar" />
+   </children>
+</AnchorPane>

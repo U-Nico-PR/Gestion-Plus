@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="40.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operacion : " wrappingWidth="77.13671875" />
+      <Text layoutX="40.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.- Tarea A" wrappingWidth="127.13671875" />
+      <Text layoutX="40.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.  Tarea B " wrappingWidth="88.13671875" />
+      <Text layoutX="40.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3.  Tarea C" wrappingWidth="88.13671875" />
+      <Text layoutX="179.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado: " wrappingWidth="69.13671875" />
+      <Button layoutX="281.0" layoutY="65.0" mnemonicParsing="false" text="Pausar " />
+      <Button layoutX="371.0" layoutY="65.0" mnemonicParsing="false" text="Reanudar" />
+      <Button layoutX="477.0" layoutY="65.0" mnemonicParsing="false" text="Detener" />
+      <MenuButton layoutX="339.0" layoutY="188.0" mnemonicParsing="false" text="Reordenar">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <MenuButton layoutX="339.0" layoutY="124.0" mnemonicParsing="false" text="Reordenar">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <MenuButton layoutX="339.0" layoutY="252.0" mnemonicParsing="false" text="Reordenar">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <Button layoutX="167.0" layoutY="124.0" mnemonicParsing="false" text="Editar" />
+      <Button layoutX="167.0" layoutY="188.0" mnemonicParsing="false" text="Editar" />
+      <Button layoutX="167.0" layoutY="252.0" mnemonicParsing="false" text="Editar" />
+      <Button layoutX="248.0" layoutY="124.0" mnemonicParsing="false" text="Eliminar" />
+      <Button layoutX="248.0" layoutY="188.0" mnemonicParsing="false" text="Eliminar" />
+      <Button layoutX="248.0" layoutY="252.0" mnemonicParsing="false" text="Eliminar" />
+      <Button layoutX="40.0" layoutY="324.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="214.0" text="+ Añadir Nueva Tarea" />
+   </children>
+</AnchorPane>
