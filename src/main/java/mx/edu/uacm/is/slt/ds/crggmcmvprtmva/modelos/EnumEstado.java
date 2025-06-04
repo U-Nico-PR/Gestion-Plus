@@ -1,11 +1,12 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos;
 
-public enum Estado {
+public enum EnumEstado {
+    EJECUTANDO,
     PAUSADA,
     DETENIDA,
-    SUSPENDIDA,
-    FINALIZADA,
-    EJECUTANDO,
     NO_EJECUTADA,
+    FINALIZADA,
+    INACTIVA,
+    CANCELADA,
     ESPERANDO
 }

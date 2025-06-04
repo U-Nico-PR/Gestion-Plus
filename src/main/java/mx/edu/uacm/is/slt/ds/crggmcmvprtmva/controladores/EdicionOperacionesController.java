@@ -5,8 +5,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.EnumEstado;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Operacion;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Tarea;
+
+import java.util.List;
 
 public class EdicionOperacionesController {
+
+    // Atributos definidos en la documentación
+    private Operacion operacionActual;
+    private List<Tarea> tareas;
+    private EnumEstado estado;
 
     @FXML
     private Button btnCrear;
@@ -38,6 +48,7 @@ public class EdicionOperacionesController {
     @FXML
     private TableView<?> tvEstados;
 
+    // Este es el Método crearTarea
     @FXML
     void btnCrear_OneClick(ActionEvent event) {
 
