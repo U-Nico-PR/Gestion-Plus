@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F3F3E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.CreacionOperacionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F3F3E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label layoutX="225.0" layoutY="32.0" text="Creacion Operacion">
             <font>
@@ -32,7 +32,7 @@
         <TextField fx:id="txtOperacion" layoutX="68.0" layoutY="340.0" />
         <HBox layoutX="324.0" layoutY="314.0" prefHeight="51.0" prefWidth="261.0" style="-fx-background-color: #F1EFEC;">
             <children>
-                <Button fx:id="btnCrearOperaciones" mnemonicParsing="false" onAction="#btnCrearOperaciones_OneClick" style="-fx-background-color: #9ACBD0;" text="Crear Operacion">
+                <Button mnemonicParsing="false" style="-fx-background-color: #9ACBD0;" text="Crear Operacion">
                     <HBox.margin>
                         <Insets left="20.0" top="12.0" />
                     </HBox.margin>
@@ -40,7 +40,7 @@
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnAgregarTareas" mnemonicParsing="false" onAction="#btnAgregarTareas_OneClick" style="-fx-background-color: #9ACBD0;" text="Agregar Tareas">
+                <Button mnemonicParsing="false" style="-fx-background-color: #9ACBD0;" text="Agregar Tareas">
                     <HBox.margin>
                         <Insets left="15.0" top="12.0" />
                     </HBox.margin>
