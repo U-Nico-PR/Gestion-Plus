@@ -12,7 +12,13 @@ import javafx.scene.layout.AnchorPane;
 public class PanelControlController {
 
     @FXML
+    private Button btnAbrir;
+
+    @FXML
     private Button btnAcerca;
+
+    @FXML
+    private Button btnCrear;
 
     @FXML
     private Button btnOperaciones;
@@ -42,7 +48,17 @@ public class PanelControlController {
     private TableView<?> tableviewTareas;
 
     @FXML
+    void btnAbrirInfo_OneClick(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnAcerca_OneClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCrear_OneClick(ActionEvent event) {
 
     }
 
@@ -53,7 +69,6 @@ public class PanelControlController {
 
     @FXML
     void btnSalir_OneClick(ActionEvent event) {
-        System.exit(0);
 
     }
 
