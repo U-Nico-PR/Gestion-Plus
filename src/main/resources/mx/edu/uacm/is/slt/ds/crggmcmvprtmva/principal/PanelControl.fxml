@@ -55,5 +55,15 @@
             </Button>
          </children>
       </HBox>
+      <Button fx:id="btnCrearOperacion" layoutX="47.0" layoutY="341.0" mnemonicParsing="false" onAction="#btnCrearOperacion_OneClick" style="-fx-background-color: #9ACBD0;" text="Crear Operacion">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAbrirInfo" layoutX="240.0" layoutY="341.0" mnemonicParsing="false" onAction="#btnAbrirInfo_Oneclick" style="-fx-background-color: #9ACBD0;" text="Abrir info Devs">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
