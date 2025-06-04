@@ -21,6 +21,12 @@ public class PenelControlController {
     private Button btnAcerca;
 
     @FXML
+    private Button btnAbrirInfo;
+
+    @FXML
+    private Button btnCrearOperacion;
+
+    @FXML
     private Button btnOperaciones;
 
     @FXML
@@ -81,6 +87,16 @@ public class PenelControlController {
 
     @FXML
     void selecionar_MauseClicked(MouseEvent event) {
+
+    }
+    @FXML
+    void btnAbrirInfo_Oneclick(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void btnCrearOperacion_OneClick(ActionEvent event) {
 
     }
 
