@@ -15,7 +15,7 @@
    <children>
       <Label fx:id="lblNombre" layoutX="24.0" layoutY="67.0" text="Nombre de la tarea:" />
       <TextField fx:id="txtNombre" layoutX="143.0" layoutY="63.0" prefHeight="26.0" prefWidth="150.0" promptText="Introduce el nombre" />
-      <TableView fx:id="jtTareas" layoutX="306.0" layoutY="57.0" prefHeight="278.0" prefWidth="288.0">
+      <TableView fx:id="jtTareas" layoutX="306.0" layoutY="82.0" prefHeight="278.0" prefWidth="288.0">
         <columns>
           <TableColumn prefWidth="121.5999755859375" text="Nombre de la Tarea" />
           <TableColumn prefWidth="91.199951171875" text="Estado Actual" />

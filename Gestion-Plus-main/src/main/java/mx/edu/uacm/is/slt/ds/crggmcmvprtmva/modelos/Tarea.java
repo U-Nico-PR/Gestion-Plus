@@ -1,8 +1,6 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos;
 
-public class Tarea implements IMetodosEstados{
-
-    // Atributos de la clase
+public class Tarea extends Thread implements IMetodosEstados {
     private String nombre;
     private String precondiciones;
     private String postcondiciones;
@@ -10,15 +8,9 @@ public class Tarea implements IMetodosEstados{
     private boolean pausable;
     private boolean tareaInicial;
     private EnumEstado estado;
+    private boolean running = true;
 
-    // Constructor de la clase
-    public Tarea(String nombre,
-                 String precondiciones,
-                 String postcondiciones,
-                 String instrucciones,
-                 boolean pausable,
-                 boolean tareaInicial)
-    {
+    public Tarea(String nombre, String precondiciones, String postcondiciones, String instrucciones, boolean pausable, boolean tareaInicial) {
         this.nombre = nombre;
         this.precondiciones = precondiciones;
         this.postcondiciones = postcondiciones;
@@ -28,30 +20,55 @@ public class Tarea implements IMetodosEstados{
         this.estado = EnumEstado.NO_EJECUTADA;
     }
 
-    // Métodos de la interface que se definen
+    @Override
+    public void run() {
+        ejecutar();
+        while (running) {
+            try {
+                System.out.println("Ejecutando tarea: " + nombre);
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Tarea interrumpida: " + nombre);
+                Thread.currentThread().interrupt();
+                running = false;
+            }
+        }
+    }
+
     @Override
     public void ejecutar() {
         actualizar(EnumEstado.EJECUTANDO);
+        new Thread(this).start(); // Inicia un nuevo hilo
     }
 
     @Override
     public void pausar() {
-        actualizar(EnumEstado.PAUSADA);
+        if (pausable) {
+            actualizar(EnumEstado.PAUSADA);
+            running = false;
+        }
     }
 
     @Override
     public void reanudar() {
-        actualizar(EnumEstado.EJECUTANDO);
+        if (pausable && estado == EnumEstado.PAUSADA) {
+            running = true;
+            actualizar(EnumEstado.EJECUTANDO);
+            new Thread(this).start();
+        }
     }
 
     @Override
     public void detener() {
         actualizar(EnumEstado.DETENIDA);
+        running = false;
+        this.interrupt();
     }
 
     @Override
     public void actualizar(EnumEstado estado) {
         this.estado = estado;
+        System.out.println("Estado actualizado a: " + estado);
     }
 
     @Override
@@ -62,5 +79,4 @@ public class Tarea implements IMetodosEstados{
     public boolean isPausable() {
         return pausable;
     }
-
 }

@@ -1,10 +1,10 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Operacion implements IMetodosEstados {
-
     private String nombre;
     private List<Tarea> tareas;
     private EnumEstado estado;
@@ -75,10 +75,17 @@ public class Operacion implements IMetodosEstados {
         tareas.remove(tarea);
     }
 
+    public void modificarOrden(int index, boolean moverArriba) {
+        if (moverArriba && index > 0) {
+            Collections.swap(tareas, index, index - 1);
+        } else if (!moverArriba && index < tareas.size() - 1) {
+            Collections.swap(tareas, index, index + 1);
+        }
+    }
+
     private void verificarEstado() {
         if (tareas.stream().allMatch(t -> t.getEstado() == EnumEstado.FINALIZADA)) {
             estado = EnumEstado.FINALIZADA;
         }
     }
 }
-

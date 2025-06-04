@@ -39,6 +39,9 @@ public class EdicionOperacionesController {
     private Button btnModificar;
 
     @FXML
+    private Button btnEditar;
+
+    @FXML
     private Button btnPausar;
 
     @FXML
@@ -129,6 +132,22 @@ public class EdicionOperacionesController {
             actualizarTabla();
         } else {
             mostrarAlerta("Debes seleccionar una tarea antes de reanudarla.");
+        }
+    }
+
+    @FXML
+    void btnEditar_OneClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/editorTareas.fxml"));
+            Parent root = loader.load();
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Lista de Libros");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+            ((Stage) btnCrear.getScene().getWindow()).close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
