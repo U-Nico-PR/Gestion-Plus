@@ -5,13 +5,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.EnumEstado;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Tarea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.principal.HelloApplication;
 
 public class CrearTareaController  {
+
+    @FXML
+    private AnchorPane principal;
 
     @FXML
     private Button btnAgregar;
@@ -106,7 +115,14 @@ public class CrearTareaController  {
 
     @FXML
     void btnVolver_OneClick(ActionEvent event) {
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GestorDeOperaciones.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) principal.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
