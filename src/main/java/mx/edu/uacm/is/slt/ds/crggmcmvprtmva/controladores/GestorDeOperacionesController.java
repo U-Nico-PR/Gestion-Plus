@@ -91,10 +91,10 @@ public class GestorDeOperacionesController {
     }
 
     @FXML
-    void tareas_OnClick(ActionEvent event) {
+    void Operaciones_OnClick(ActionEvent event) {
 
         try {
-            FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/CrearTarea.fxml"));
+            FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/EdicionOperaciones.fxml"));
             Parent root = lodaer.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
