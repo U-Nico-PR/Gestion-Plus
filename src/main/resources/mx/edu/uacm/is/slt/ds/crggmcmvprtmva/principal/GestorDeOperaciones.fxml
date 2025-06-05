@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.GestorDeOperacionesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane layoutX="192.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
@@ -67,11 +67,11 @@
          <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <TableView prefHeight="334.0" prefWidth="470.0">
+                  <TableView fx:id="tableOperacion" prefHeight="334.0" prefWidth="470.0">
                     <columns>
                       <TableColumn fx:id="colOperacion" minWidth="150.0" prefWidth="150.0" resizable="false" text="Operación" />
                       <TableColumn fx:id="colEstado" minWidth="150.0" prefWidth="150.0" text="Estado" />
-                        <TableColumn minWidth="150.0" prefWidth="150.0" text="Destalles" />
+                        <TableColumn fx:id="colDetalle" minWidth="150.0" prefWidth="150.0" text="Destalles" />
                     </columns>
                   </TableView>
                </content>

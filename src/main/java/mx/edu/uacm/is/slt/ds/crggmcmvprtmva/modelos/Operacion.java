@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Operacion implements IMetodosEstados, Observable {
     private String nombre;
+    private String detalle;
     private List<Tarea> tareas;
     private EnumEstado estado;
     private List<Observador> observadores = new ArrayList<>();
@@ -125,6 +126,11 @@ public class Operacion implements IMetodosEstados, Observable {
     // Getters para los atributos
     public String getNombre() {
         return nombre;
+    }
+
+    // También añadi este yo nico
+    public String getDetalle() {
+        return detalle;
     }
 
     public List<Tarea> getTareas() {

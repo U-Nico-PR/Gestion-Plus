@@ -162,4 +162,9 @@ public class EdicionOperacionesController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    // Esta la modifique nico
+    public void cargarDatos(Operacion operacion){
+
+    }
 }
