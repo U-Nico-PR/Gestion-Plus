@@ -112,15 +112,10 @@ public class CrearTareaController  {
     @FXML
     void btnModificar_OneClick(ActionEvent event) {
         //Falta Implementacion
-        try {
-            FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/EditorTareas.fxml"));
-            Parent root = lodaer.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Editar Tareas");
-            stage.show();
-        } catch (IOException e){
+        if (seleccionar()) {
 
+        }else {
+            mostrarAlerta("Debes Seleccionar Una Tarea");
         }
 
 
@@ -128,6 +123,7 @@ public class CrearTareaController  {
 
     @FXML
     void btnVolver_OneClick(ActionEvent event) {
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GestorDeOperaciones.fxml"));
             Parent root = fxmlLoader.load();
@@ -177,6 +173,7 @@ public class CrearTareaController  {
         }
 
     }
+    /*
     @FXML
     void tbTareas_OneClicked(MouseEvent event) {
         int fila2 = tableViewTareas.getSelectionModel().getSelectedIndex();
@@ -203,8 +200,8 @@ public class CrearTareaController  {
         } else {
             System.out.println("No se encontró la tarea.");
         }
-    }
-   /*
+    }*/
+
     private boolean seleccionar(){
         int fila = tableViewTareas.getSelectionModel().getSelectedIndex();
         if (fila == -1) {
@@ -221,7 +218,22 @@ public class CrearTareaController  {
             String precondiciones = tareaSeleccionada.getPrecondiciones();
             String postcondiciones = tareaSeleccionada.getPostcondiciones();
             String instrucciones = tareaSeleccionada.getInstrucciones();
+            //Lleva los datos a la ventana de editar tarea
+            try {
+                FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/EditorTareas.fxml"));
+                Parent root = lodaer.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Editar Tareas");
+                stage.show();
+                EditorTareaController controller = lodaer.getController();
+                controller.setModificarPre(precondiciones);
+                controller.setModificarPost(postcondiciones);
+                controller.setComportamiento(instrucciones);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
 
+            }
             //Muestra los datos de la busqueda
             System.out.println("Nombre: " + nombre);
             System.out.println("Precondiciones: " + precondiciones);
@@ -232,9 +244,7 @@ public class CrearTareaController  {
         }
 
         return true;
-
-
-    }*/
+    }
 
 
 
