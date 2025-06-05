@@ -133,4 +133,16 @@ public class Tarea extends Thread implements IMetodosEstados {
     public void setRunning(boolean running) {
         this.running = running;
     }
+
+    public String getPrecondiciones() {
+        return precondiciones;
+    }
+
+    public String getPostcondiciones() {
+        return postcondiciones;
+    }
+
+    public String getInstrucciones() {
+        return instrucciones;
+    }
 }
