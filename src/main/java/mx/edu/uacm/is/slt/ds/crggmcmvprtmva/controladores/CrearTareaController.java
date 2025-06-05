@@ -110,6 +110,8 @@ public class CrearTareaController  {
     @FXML
     void btnModificar_OneClick(ActionEvent event) {
         mostrarAlerta("Debes Seleccionar Una Tarea");
+        //Falta Implementacion
+
 
     }
 
@@ -166,13 +168,63 @@ public class CrearTareaController  {
     }
     @FXML
     void tbTareas_OneClicked(MouseEvent event) {
-        int fila;
-        fila = tableViewTareas.getSelectionModel().getSelectedIndex();
-        if (fila == -1) {
+        int fila2 = tableViewTareas.getSelectionModel().getSelectedIndex();
+        if (fila2 == -1) {
             return;
         }
+        String nombreSeleccionado = tableViewTareas.getSelectionModel().getSelectedItem().getNombre();
+        Tarea tareaSeleccionada = listaTareas.stream()
+                .filter(tarea -> tarea.getNombre().equals(nombreSeleccionado))
+                .findFirst()
+                .orElse(null);
 
+        if (tareaSeleccionada != null) {
+            String nombre = tareaSeleccionada.getNombre();
+            String precondiciones = tareaSeleccionada.getPrecondiciones();
+            String postcondiciones = tareaSeleccionada.getPostcondiciones();
+            String instrucciones = tareaSeleccionada.getInstrucciones();
+
+            //Muestra los datos de la busqueda
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Precondiciones: " + precondiciones);
+            System.out.println("Postcondiciones: " + postcondiciones);
+            System.out.println("Instrucciones: " + instrucciones);
+        } else {
+            System.out.println("No se encontró la tarea.");
+        }
     }
+   /*
+    private boolean seleccionar(){
+        int fila = tableViewTareas.getSelectionModel().getSelectedIndex();
+        if (fila == -1) {
+            return false;
+        }
+        String nombreSeleccionado = tableViewTareas.getSelectionModel().getSelectedItem().getNombre();
+        Tarea tareaSeleccionada = listaTareas.stream()
+                .filter(tarea -> tarea.getNombre().equals(nombreSeleccionado))
+                .findFirst()
+                .orElse(null);
+
+        if (tareaSeleccionada != null) {
+            String nombre = tareaSeleccionada.getNombre();
+            String precondiciones = tareaSeleccionada.getPrecondiciones();
+            String postcondiciones = tareaSeleccionada.getPostcondiciones();
+            String instrucciones = tareaSeleccionada.getInstrucciones();
+
+            //Muestra los datos de la busqueda
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Precondiciones: " + precondiciones);
+            System.out.println("Postcondiciones: " + postcondiciones);
+            System.out.println("Instrucciones: " + instrucciones);
+        } else {
+            System.out.println("No se encontró la tarea.");
+        }
+
+        return true;
+
+
+    }*/
+
 
 
 
