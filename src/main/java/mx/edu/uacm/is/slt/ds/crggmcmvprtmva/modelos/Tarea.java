@@ -28,8 +28,6 @@ public class Tarea implements IMetodosEstados{
         this.estado = EnumEstado.NO_EJECUTADA;
     }
 
-
-    // comentario
     // Métodos de la interface que se definen
     @Override
     public void ejecutar() {

@@ -16,3 +16,4 @@ public interface IMetodosEstados {
     EnumEstado getEstado();
 
 }
+
