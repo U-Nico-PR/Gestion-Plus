@@ -13,11 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.EnumEstado;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Tarea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.principal.HelloApplication;
 
-import java.io.IOException;
+import java.io.*;
 
 public class CrearTareaController  {
 
@@ -88,7 +87,9 @@ public class CrearTareaController  {
                 new SimpleStringProperty(cellData.getValue().isPausable() ? "Sí" : "No"));
         tlEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
-        tableViewTareas.setItems(listaTareas);
+
+        //tableViewTareas.setItems(listaTareas);
+        verTareas();
     }
 
 
@@ -103,11 +104,11 @@ public class CrearTareaController  {
             boolean d1 = verificarPausable(desicion);
             Tarea t1 = new Tarea(nombre, precondiciones, postcondiciones, instrucciones, d1);
             listaTareas.add(t1);
+            añadirTarea(t1);
             mostrarAlerta("Tarea creada");
             limpiarCasillas();
         }
     }
-
 
     @FXML
     void btnModificar_OneClick(ActionEvent event) {
@@ -173,35 +174,6 @@ public class CrearTareaController  {
         }
 
     }
-    /*
-    @FXML
-    void tbTareas_OneClicked(MouseEvent event) {
-        int fila2 = tableViewTareas.getSelectionModel().getSelectedIndex();
-        if (fila2 == -1) {
-            return;
-        }
-        String nombreSeleccionado = tableViewTareas.getSelectionModel().getSelectedItem().getNombre();
-        Tarea tareaSeleccionada = listaTareas.stream()
-                .filter(tarea -> tarea.getNombre().equals(nombreSeleccionado))
-                .findFirst()
-                .orElse(null);
-
-        if (tareaSeleccionada != null) {
-            String nombre = tareaSeleccionada.getNombre();
-            String precondiciones = tareaSeleccionada.getPrecondiciones();
-            String postcondiciones = tareaSeleccionada.getPostcondiciones();
-            String instrucciones = tareaSeleccionada.getInstrucciones();
-
-            //Muestra los datos de la busqueda
-            System.out.println("Nombre: " + nombre);
-            System.out.println("Precondiciones: " + precondiciones);
-            System.out.println("Postcondiciones: " + postcondiciones);
-            System.out.println("Instrucciones: " + instrucciones);
-        } else {
-            System.out.println("No se encontró la tarea.");
-        }
-    }*/
-
     private boolean seleccionar(){
         int fila = tableViewTareas.getSelectionModel().getSelectedIndex();
         if (fila == -1) {
@@ -232,20 +204,66 @@ public class CrearTareaController  {
                 controller.setComportamiento(instrucciones);
             } catch (IOException e) {
                 throw new RuntimeException(e);
-
             }
-            //Muestra los datos de la busqueda
-            System.out.println("Nombre: " + nombre);
-            System.out.println("Precondiciones: " + precondiciones);
-            System.out.println("Postcondiciones: " + postcondiciones);
-            System.out.println("Instrucciones: " + instrucciones);
         } else {
             System.out.println("No se encontró la tarea.");
         }
 
         return true;
     }
+    //Agrega las Tareas al archivo txt
+    public void añadirTarea(Tarea tarea) {
+        try (BufferedWriter escribir = new BufferedWriter(new FileWriter("Tareas.txt", true))) {
+            escribir.write("Nombre: " + tarea.getNombre() + "\n");
+            escribir.write("Precondiciones: " + tarea.getPrecondiciones() + "\n");
+            escribir.write("Postcondiciones: " + tarea.getPostcondiciones() + "\n");
+            escribir.write("Instrucciones: " + tarea.getInstrucciones() + "\n");
+            escribir.write("Pausable: " + (tarea.isPausable() ? "Si" : "No") + "\n");
+            escribir.write("Estado: " + tarea.getEstado() + "\n");
+            escribir.write("----------------------------------------\n");
+        } catch (IOException e) {
+            System.out.println("Hubo un error al guardar la tarea: " + e.getMessage());
+        }
+    }
 
+    //Ver Tareas del archivo
+
+    public void verTareas() {
+        listaTareas.clear(); // Limpiar la lista antes de cargar nuevos datos
+        try (BufferedReader reader = new BufferedReader(new FileReader("Tareas.txt"))) {
+            String linea;
+            String nombre= "";
+            String precondiciones ="";
+            String postcondiciones="";
+            String instrucciones="";
+            boolean pausable = false;
+            EnumEstado estado = null;
+
+            while ((linea = reader.readLine()) != null) {
+                if (linea.startsWith("Nombre: ")) {
+                    nombre = linea.substring(8);
+                } else if (linea.startsWith("Precondiciones: ")) {
+                    precondiciones = linea.substring(15);
+                } else if (linea.startsWith("Postcondiciones: ")) {
+                    postcondiciones = linea.substring(16);
+                } else if (linea.startsWith("Instrucciones: ")) {
+                    instrucciones = linea.substring(14);
+                } else if (linea.startsWith("Pausable: ")) {
+                    pausable = linea.substring(9).equals("Si");
+                } else if (linea.startsWith("Estado: ")) {
+                    estado = EnumEstado.valueOf(linea.substring(8)); // Convertir texto a Enum
+                } else if (linea.equals("----------------------------------------")) {
+                    // Cuando encuentra la separación, agrega la tarea a la lista
+                    listaTareas.add(new Tarea(nombre, precondiciones, postcondiciones, instrucciones, pausable));
+                }
+            }
+            //Actualiza la tabla cada vez que se agreguen mas
+            tableViewTareas.setItems(listaTareas);
+            System.out.println("Tareas cargadas correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
 
 
 
