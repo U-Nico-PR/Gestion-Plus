@@ -66,7 +66,7 @@ public class EdicionOperacionesController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/CrearTarea.fxml"));
             Parent root = loader.load();
             Stage primaryStage = new Stage();
-            primaryStage.setTitle("Crear Tarea");
+            primaryStage.setTitle("Lista de Libros");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
             ((Stage) btnCrear.getScene().getWindow()).close();
@@ -141,7 +141,7 @@ public class EdicionOperacionesController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/editorTareas.fxml"));
             Parent root = loader.load();
             Stage primaryStage = new Stage();
-            primaryStage.setTitle("Editar Tarea");
+            primaryStage.setTitle("Lista de Libros");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
             ((Stage) btnCrear.getScene().getWindow()).close();

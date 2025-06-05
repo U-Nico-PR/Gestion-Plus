@@ -20,6 +20,16 @@ public class Tarea extends Thread implements IMetodosEstados {
         this.estado = EnumEstado.NO_EJECUTADA;
     }
 
+    //Segundo Constructor para Crear Tarea
+    public Tarea(String nombre, String precondiciones, String postcondiciones, String instrucciones, boolean pausable) {
+        this.nombre = nombre;
+        this.precondiciones = precondiciones;
+        this.postcondiciones = postcondiciones;
+        this.instrucciones = instrucciones;
+        this.pausable = pausable;
+        this.estado = EnumEstado.NO_EJECUTADA;
+    }
+
     @Override
     public void run() {
         ejecutar();

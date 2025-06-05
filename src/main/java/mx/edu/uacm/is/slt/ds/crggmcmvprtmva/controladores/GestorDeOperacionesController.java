@@ -39,6 +39,8 @@ public class GestorDeOperacionesController {
     private GestorDeOperacionesController() {
         // Constructor privado
     }
+
+    //patron de diseño singleton
     public static GestorDeOperacionesController getInstancia() {
         if(instancia == null) {
             instancia = new GestorDeOperacionesController();
