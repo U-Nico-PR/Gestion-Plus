@@ -131,4 +131,5 @@ public class Tarea extends Thread implements IMetodosEstados, Observable {
     public boolean isTareaInicial() {
         return tareaInicial;
     }
+    //
 }
