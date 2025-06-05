@@ -14,6 +14,17 @@ import java.io.IOException;
 
 public class GestorDeOperacionesController {
 
+    private static GestorDeOperacionesController instancia;
+    private GestorDeOperacionesController() {
+        // Constructor privado
+    }
+    public static GestorDeOperacionesController getInstancia() {
+        if(instancia == null) {
+            instancia = new GestorDeOperacionesController();
+        }
+        return instancia;
+    }
+
     @FXML
     private Button acercaDe;
 
