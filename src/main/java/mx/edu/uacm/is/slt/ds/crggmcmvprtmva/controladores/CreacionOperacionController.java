@@ -1,16 +1,43 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.SistemaOperaciones;
 
 public class CreacionOperacionController {
 
-    /*
-    Aquí van los atributos definidos en la documentación de las clase
-    Igual pueden ir aumentando dependiendo de como veas la lógica para esta interfaz
-     */
-    private String nombre;
+    @FXML
+    private TextField txtNombreOperacion;
 
-    /*
-    Seguidos van los metodos. Los que se definieron en la documentación son
-    guardar() igual pueden aumentar dependiendo de la lógica que apliques.
-     */
+    @FXML
+    private Button btnCrearOperacion;
+
+    @FXML
+    private void crearOperacion() {
+        String nombreOperacion = txtNombreOperacion.getText().trim();
+
+        if (nombreOperacion.isEmpty()) {
+            mostrarAlerta("Error", "El nombre de la operación es requerido", Alert.AlertType.ERROR);
+            return;
+        }
+
+        // Registrar la operación en el sistema
+        SistemaOperaciones.getInstancia().crearOperacion(nombreOperacion);
+
+        // Mostrar confirmación
+        mostrarAlerta("Éxito", "Operación '" + nombreOperacion + "' creada correctamente", Alert.AlertType.INFORMATION);
+
+        // Limpiar el campo
+        txtNombreOperacion.clear();
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
 
 }
