@@ -1,12 +1,6 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos;
 
-import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.observador.Observable;
-import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.observador.Observador;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class Tarea extends Thread implements IMetodosEstados, Observable {
+public class Tarea extends Thread implements IMetodosEstados {
     private String nombre;
     private String precondiciones;
     private String postcondiciones;
@@ -15,10 +9,8 @@ public class Tarea extends Thread implements IMetodosEstados, Observable {
     private boolean tareaInicial;
     private EnumEstado estado;
     private boolean running = true;
-    private List<Observador> observadores = new ArrayList<>();
 
-    public Tarea(String nombre, String precondiciones, String postcondiciones,
-                 String instrucciones, boolean pausable, boolean tareaInicial) {
+    public Tarea(String nombre, String precondiciones, String postcondiciones, String instrucciones, boolean pausable, boolean tareaInicial) {
         this.nombre = nombre;
         this.precondiciones = precondiciones;
         this.postcondiciones = postcondiciones;
@@ -46,8 +38,7 @@ public class Tarea extends Thread implements IMetodosEstados, Observable {
     @Override
     public void ejecutar() {
         actualizar(EnumEstado.EJECUTANDO);
-        new Thread(this).start();
-        notificarObservadores("La tarea " + nombre + " ha comenzado a ejecutarse");
+        new Thread(this).start(); // Inicia un nuevo hilo
     }
 
     @Override
@@ -55,7 +46,6 @@ public class Tarea extends Thread implements IMetodosEstados, Observable {
         if (pausable) {
             actualizar(EnumEstado.PAUSADA);
             running = false;
-            notificarObservadores("La tarea " + nombre + " ha sido pausada");
         }
     }
 
@@ -65,7 +55,6 @@ public class Tarea extends Thread implements IMetodosEstados, Observable {
             running = true;
             actualizar(EnumEstado.EJECUTANDO);
             new Thread(this).start();
-            notificarObservadores("La tarea " + nombre + " ha sido reanudada");
         }
     }
 
@@ -74,14 +63,12 @@ public class Tarea extends Thread implements IMetodosEstados, Observable {
         actualizar(EnumEstado.DETENIDA);
         running = false;
         this.interrupt();
-        notificarObservadores("La tarea " + nombre + " ha sido detenida");
     }
 
     @Override
     public void actualizar(EnumEstado estado) {
         this.estado = estado;
         System.out.println("Estado actualizado a: " + estado);
-        notificarObservadores("La tarea " + nombre + " cambió su estado a " + estado);
     }
 
     @Override
@@ -92,44 +79,4 @@ public class Tarea extends Thread implements IMetodosEstados, Observable {
     public boolean isPausable() {
         return pausable;
     }
-
-    // Implementación de los métodos de Observable
-    @Override
-    public void registrarObservador(Observador observador) {
-        observadores.add(observador);
-    }
-
-    @Override
-    public void eliminarObservador(Observador observador) {
-        observadores.remove(observador);
-    }
-
-    @Override
-    public void notificarObservadores(String mensaje) {
-        for (Observador observador : observadores) {
-            observador.actualizar(this, mensaje);
-        }
-    }
-
-    // Getters para los atributos
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getPrecondiciones() {
-        return precondiciones;
-    }
-
-    public String getPostcondiciones() {
-        return postcondiciones;
-    }
-
-    public String getInstrucciones() {
-        return instrucciones;
-    }
-
-    public boolean isTareaInicial() {
-        return tareaInicial;
-    }
-    //
 }
