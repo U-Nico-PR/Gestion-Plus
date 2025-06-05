@@ -17,7 +17,7 @@
                 <Font name="System Bold Italic" size="18.0" />
             </font>
         </Label>
-        <TableView layoutX="132.0" layoutY="99.0" prefHeight="161.0" prefWidth="317.0">
+        <TableView fx:id="jtOperacion" layoutX="132.0" layoutY="99.0" prefHeight="161.0" prefWidth="317.0">
             <columns>
                 <TableColumn prefWidth="114.66665649414062" text="Nombre" />
                 <TableColumn prefWidth="104.0" text="Pausable" />
