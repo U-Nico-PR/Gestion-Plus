@@ -111,7 +111,6 @@ public class CrearTareaController  {
 
     @FXML
     void btnModificar_OneClick(ActionEvent event) {
-        mostrarAlerta("Debes Seleccionar Una Tarea");
         //Falta Implementacion
         try {
             FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/EditorTareas.fxml"));

@@ -3,6 +3,7 @@ package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.EnumEstado;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Tarea;
 
 public class EditorTareaController {
@@ -65,24 +66,42 @@ public class EditorTareaController {
         boolean pausable = rdbtnPausable.isSelected();
 
         try {
-            // Crear y almacenar la tarea
-            tareaActual = new Tarea(nombre, precondiciones, postcondiciones, instrucciones, pausable);
-            System.out.println("Tarea guardada exitosamente: " + tareaActual.getEstado());
+            if (tareaActual == null) {
+                // Crear la tarea si no existe
+                tareaActual = new Tarea(nombre, precondiciones, postcondiciones, instrucciones, pausable);
+                System.out.println("Tarea creada y guardada exitosamente.");
+            } else {
+                // Actualizar los datos de la tarea sin volver a ejecutarla
+                tareaActual.setNombre(nombre);
+                tareaActual.setPrecondiciones(precondiciones);
+                tareaActual.setPostcondiciones(postcondiciones);
+                tareaActual.setInstrucciones(instrucciones);
+                tareaActual.setPausable(pausable);
+                System.out.println("Tarea actualizada exitosamente.");
+            }
 
-            // Opcionalmente, podrías iniciar la tarea inmediatamente
-            tareaActual.ejecutar();
-
-            // Mostrar mensaje de éxito
+            // Mensaje de confirmación
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Tarea Guardada");
             alert.setHeaderText(null);
-            alert.setContentText("La tarea '" + nombre + "' ha sido guardada y ejecutada.");
+            alert.setContentText("La tarea '" + nombre + "' ha sido guardada.");
             alert.showAndWait();
 
         } catch (Exception e) {
-            mostrarAlerta("Ocurrio un error al guardar la tarea: " + e.getMessage());
+            mostrarAlerta("Ocurrió un error al guardar la tarea: " + e.getMessage());
         }
     }
+
+    @FXML
+    void EjecutarTarea(ActionEvent event) {
+        if (tareaActual != null && tareaActual.getEstado() == EnumEstado.NO_EJECUTADA) {
+            tareaActual.ejecutar();
+            System.out.println("Tarea ejecutada exitosamente.");
+        } else {
+            mostrarAlerta("La tarea ya está en ejecución o no ha sido creada.");
+        }
+    }
+
 
     private void limpiarCampos() {
         txtModPrecon.clear();

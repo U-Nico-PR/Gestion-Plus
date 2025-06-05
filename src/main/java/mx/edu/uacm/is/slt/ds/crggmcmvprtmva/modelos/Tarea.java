@@ -102,4 +102,44 @@ public class Tarea extends Thread implements IMetodosEstados {
     public boolean isPausable() {
         return pausable;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPrecondiciones(String precondiciones) {
+        this.precondiciones = precondiciones;
+    }
+
+    public void setPostcondiciones(String postcondiciones) {
+        this.postcondiciones = postcondiciones;
+    }
+
+    public void setInstrucciones(String instrucciones) {
+        this.instrucciones = instrucciones;
+    }
+
+    public void setPausable(boolean pausable) {
+        this.pausable = pausable;
+    }
+
+    public boolean isTareaInicial() {
+        return tareaInicial;
+    }
+
+    public void setTareaInicial(boolean tareaInicial) {
+        this.tareaInicial = tareaInicial;
+    }
+
+    public void setEstado(EnumEstado estado) {
+        this.estado = estado;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
 }
