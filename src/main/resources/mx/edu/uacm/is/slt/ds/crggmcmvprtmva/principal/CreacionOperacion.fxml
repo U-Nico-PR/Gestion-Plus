@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F3F3E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F3F3E0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.CreacionOperacionController">
     <children>
         <Label layoutX="225.0" layoutY="32.0" text="Creacion Operacion">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
         </Label>
-        <TableView layoutX="132.0" layoutY="99.0" prefHeight="161.0" prefWidth="317.0">
+        <TableView fx:id="jtOperacion" layoutX="132.0" layoutY="99.0" prefHeight="161.0" prefWidth="317.0">
             <columns>
                 <TableColumn prefWidth="114.66665649414062" text="Nombre" />
                 <TableColumn prefWidth="104.0" text="Pausable" />
@@ -32,7 +32,7 @@
         <TextField fx:id="txtOperacion" layoutX="68.0" layoutY="340.0" />
         <HBox layoutX="324.0" layoutY="314.0" prefHeight="51.0" prefWidth="261.0" style="-fx-background-color: #F1EFEC;">
             <children>
-                <Button mnemonicParsing="false" style="-fx-background-color: #9ACBD0;" text="Crear Operacion">
+                <Button fx:id="btnCrearOperacion" mnemonicParsing="false" onAction="#crearOperacion_OnClick" style="-fx-background-color: #9ACBD0;" text="Crear Operacion">
                     <HBox.margin>
                         <Insets left="20.0" top="12.0" />
                     </HBox.margin>
@@ -40,7 +40,7 @@
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" style="-fx-background-color: #9ACBD0;" text="Agregar Tareas">
+                <Button fx:id="btnAgregarTarea" mnemonicParsing="false" onAction="#agregarTarea_OnClick" style="-fx-background-color: #9ACBD0;" text="Agregar Tareas">
                     <HBox.margin>
                         <Insets left="15.0" top="12.0" />
                     </HBox.margin>

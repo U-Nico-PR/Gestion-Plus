@@ -1,5 +1,6 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,19 +34,19 @@ public class EdicionOperacionesController {
     private Button btnDetener;
 
     @FXML
+    private Button btnEditar;
+
+    @FXML
     private Button btnEliminar;
 
     @FXML
     private Button btnModificar;
 
     @FXML
-    private Button btnEditar;
-
-    @FXML
     private Button btnPausar;
 
     @FXML
-    private Button btnReanudar;
+    private Button btnRenaudar;
 
     @FXML
     private TableColumn<?, ?> colDetalles;
@@ -59,14 +60,14 @@ public class EdicionOperacionesController {
     @FXML
     private TableView<Tarea> tbEstados;
 
-    // Metodo para crear tarea
+    //Metodo para crear tarea
     @FXML
-    void btnCrear_OneClick(ActionEvent event){
+    void btnCrear_OneClick(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/CrearTarea.fxml"));
             Parent root = loader.load();
             Stage primaryStage = new Stage();
-            primaryStage.setTitle("Crear Tarea");
+            primaryStage.setTitle("Creacion de Tareas");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
             ((Stage) btnCrear.getScene().getWindow()).close();
@@ -75,7 +76,7 @@ public class EdicionOperacionesController {
             e.printStackTrace();
         }
     }
-    //Metodo para Detener la tarea
+
     @FXML
     void btnDetener_OneClick(ActionEvent event) {
         Tarea tareaSeleccionada = tbEstados.getSelectionModel().getSelectedItem();
@@ -86,10 +87,26 @@ public class EdicionOperacionesController {
             mostrarAlerta("Debes seleccionar una tarea antes de detenerla.");
         }
     }
-    //Metodo para eliminar la tarea
+
+    @FXML
+    void btnEditar_OneClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/editorTareas.fxml"));
+            Parent root = loader.load();
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Editar Tareas");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+            ((Stage) btnCrear.getScene().getWindow()).close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void btnEliminar_OneClick(ActionEvent event) {
-        Tarea tareaSeleccionada = tbEstados.getSelectionModel().getSelectedItem();
+        Tarea tareaSeleccionada = (Tarea) tbEstados.getSelectionModel().getSelectedItem();
         if (tareaSeleccionada != null) {
             operacionActual.eliminarTarea(tareaSeleccionada);
             tareas.remove(tareaSeleccionada);
@@ -98,7 +115,7 @@ public class EdicionOperacionesController {
             mostrarAlerta("Debes seleccionar una tarea antes de eliminarla.");
         }
     }
-    //Metodo para modificar el orden de las tareas
+
     @FXML
     void btnModificar_OneClick(ActionEvent event) {
         int selectedIndex = tbEstados.getSelectionModel().getSelectedIndex();
@@ -112,10 +129,10 @@ public class EdicionOperacionesController {
             mostrarAlerta("Modificación inválida");
         }
     }
-    //Metodo para pausar la tarea
+
     @FXML
     void btnPausar_OneClick(ActionEvent event) {
-        Tarea tareaSeleccionada = tbEstados.getSelectionModel().getSelectedItem();
+        Tarea tareaSeleccionada = (Tarea) tbEstados.getSelectionModel().getSelectedItem();
         if (tareaSeleccionada != null) {
             tareaSeleccionada.pausar();
             actualizarTabla();
@@ -123,10 +140,10 @@ public class EdicionOperacionesController {
             mostrarAlerta("Debes seleccionar una tarea antes de pausarla.");
         }
     }
-    //Metodo para reanudar la tarea
+
     @FXML
     void btnReanudar_OneClick(ActionEvent event) {
-        Tarea tareaSeleccionada = tbEstados.getSelectionModel().getSelectedItem();
+        Tarea tareaSeleccionada = (Tarea) tbEstados.getSelectionModel().getSelectedItem();
         if (tareaSeleccionada != null) {
             tareaSeleccionada.reanudar();
             actualizarTabla();
@@ -135,26 +152,11 @@ public class EdicionOperacionesController {
         }
     }
 
-    @FXML
-    void btnEditar_OneClick(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/editorTareas.fxml"));
-            Parent root = loader.load();
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Editar Tarea");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-            ((Stage) btnCrear.getScene().getWindow()).close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void actualizarTabla(){
         tbEstados.setItems(tareas);
         tbEstados.refresh();
     }
+
     private void mostrarAlerta(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Selección requerida");

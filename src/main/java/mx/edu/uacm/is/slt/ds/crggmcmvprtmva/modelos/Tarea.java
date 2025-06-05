@@ -10,6 +10,17 @@ public class Tarea extends Thread implements IMetodosEstados {
     private EnumEstado estado;
     private boolean running = true;
 
+    //Segundo Constructor para Crear Tarea
+    public Tarea(String nombre, String precondiciones, String postcondiciones, String instrucciones, boolean pausable) {
+        this.nombre = nombre;
+        this.precondiciones = precondiciones;
+        this.postcondiciones = postcondiciones;
+        this.instrucciones = instrucciones;
+        this.pausable = pausable;
+        this.estado = EnumEstado.NO_EJECUTADA;
+    }
+
+
     public Tarea(String nombre, String precondiciones, String postcondiciones, String instrucciones, boolean pausable, boolean tareaInicial) {
         this.nombre = nombre;
         this.precondiciones = precondiciones;
@@ -17,16 +28,6 @@ public class Tarea extends Thread implements IMetodosEstados {
         this.instrucciones = instrucciones;
         this.pausable = pausable;
         this.tareaInicial = tareaInicial;
-        this.estado = EnumEstado.NO_EJECUTADA;
-    }
-
-    // Segundo Constructor para Crear Tarea
-    public Tarea(String nombre, String precondiciones, String postcondiciones, String instrucciones, boolean pausable) {
-        this.nombre = nombre;
-        this.precondiciones = precondiciones;
-        this.postcondiciones = postcondiciones;
-        this.instrucciones = instrucciones;
-        this.pausable = pausable;
         this.estado = EnumEstado.NO_EJECUTADA;
     }
 
@@ -84,6 +85,9 @@ public class Tarea extends Thread implements IMetodosEstados {
     @Override
     public EnumEstado getEstado() {
         return estado;
+    }
+    public String getNombre() {
+        return nombre;
     }
 
     public boolean isPausable() {
