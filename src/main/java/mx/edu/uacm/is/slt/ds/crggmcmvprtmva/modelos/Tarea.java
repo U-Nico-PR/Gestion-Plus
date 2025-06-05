@@ -86,6 +86,17 @@ public class Tarea extends Thread implements IMetodosEstados {
         return estado;
     }
 
+    public String getPostcondiciones() {
+        return postcondiciones;
+    }
+    public String getInstrucciones() {
+        return instrucciones;
+    }
+    public String getPrecondiciones() {
+        return precondiciones;
+    }
+    
+
     public boolean isPausable() {
         return pausable;
     }
