@@ -17,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.principal.HelloApplication;
 
+import java.io.IOException;
+
 public class CrearTareaController  {
 
     @FXML
@@ -111,6 +113,16 @@ public class CrearTareaController  {
     void btnModificar_OneClick(ActionEvent event) {
         mostrarAlerta("Debes Seleccionar Una Tarea");
         //Falta Implementacion
+        try {
+            FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/EditorTareas.fxml"));
+            Parent root = lodaer.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Editar Tareas");
+            stage.show();
+        } catch (IOException e){
+
+        }
 
 
     }
