@@ -35,6 +35,17 @@ public class GestorDeOperacionesController {
     @FXML
     private Button tareas;
 
+    private static GestorDeOperacionesController instancia;
+    private GestorDeOperacionesController() {
+        // Constructor privado
+    }
+    public static GestorDeOperacionesController getInstancia() {
+        if(instancia == null) {
+            instancia = new GestorDeOperacionesController();
+        }
+        return instancia;
+    }
+
     @FXML
     void acercaDe_OnClick(ActionEvent event) {
 
