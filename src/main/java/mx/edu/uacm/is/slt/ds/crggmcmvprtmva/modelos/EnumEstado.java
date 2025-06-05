@@ -8,5 +8,7 @@ public enum EnumEstado {
     FINALIZADA,
     INACTIVA,
     CANCELADA,
-    ESPERANDO
+    ESPERANDO,
+    NOPAUSABLE,
+    PAUSABLE
 }

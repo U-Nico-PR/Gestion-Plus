@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.CrearTareaController">
+<AnchorPane fx:id="principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.CrearTareaController">
    <children>
       <Label layoutX="220.0" layoutY="33.0" prefHeight="28.0" prefWidth="137.0" text="Creacion Tarea">
          <font>
@@ -47,7 +46,7 @@
          </children>
       </VBox>
       <Button fx:id="btnAgregar" layoutX="90.0" layoutY="338.0" mnemonicParsing="false" onAction="#btnAgregar_OneClick" text="Agregar" />
-      <TableView fx:id="tableViewTareas" layoutX="271.0" layoutY="93.0" prefHeight="197.0" prefWidth="312.0">
+      <TableView fx:id="tableViewTareas" layoutX="271.0" layoutY="93.0" onMouseClicked="#tbTareas_OneClicked" prefHeight="197.0" prefWidth="312.0">
         <columns>
           <TableColumn fx:id="tlNombre" prefWidth="99.3333740234375" text="Nombre" />
           <TableColumn fx:id="tlEstado" prefWidth="110.00006103515625" text="Estado Actual" />
