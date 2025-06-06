@@ -30,6 +30,7 @@ public class Tarea extends Thread implements IMetodosEstados {
         this.estado = EnumEstado.NO_EJECUTADA;
     }
 
+
     @Override
     public void run() {
         ejecutar();
@@ -143,4 +144,5 @@ public class Tarea extends Thread implements IMetodosEstados {
     public void setRunning(boolean running) {
         this.running = running;
     }
+
 }

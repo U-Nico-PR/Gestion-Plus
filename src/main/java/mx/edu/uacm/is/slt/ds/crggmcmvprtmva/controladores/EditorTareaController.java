@@ -88,7 +88,7 @@ public class EditorTareaController {
         try {
             if (tareaActual == null) {
                 // Crear la tarea si no existe
-                tareaActual = new Tarea(nombre, precondiciones, postcondiciones, instrucciones, pausable);
+                //tareaActual = new Tarea(nombre, precondiciones, postcondiciones, instrucciones, pausable,e);
                 System.out.println("Tarea creada y guardada exitosamente.");
             } else {
                 // Actualizar los datos de la tarea sin volver a ejecutarla
@@ -137,4 +137,6 @@ public class EditorTareaController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+
 }
