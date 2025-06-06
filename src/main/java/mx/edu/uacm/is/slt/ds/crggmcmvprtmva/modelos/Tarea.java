@@ -145,4 +145,5 @@ public class Tarea extends Thread implements IMetodosEstados {
         this.running = running;
     }
 
+
 }

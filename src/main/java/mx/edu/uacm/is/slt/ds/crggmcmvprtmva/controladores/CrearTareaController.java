@@ -86,6 +86,16 @@ public class CrearTareaController  {
         tlPausable.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().isPausable() ? "Si" : "No"));
         tlEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        // Asegúrate de inicializar la tarea correctamente antes de usarla
+
+        Tarea n = new Tarea("Nuevo", "Nada", "Nos", "Pocas", true);
+        Tarea b = new Tarea("Hora", "Nada", "Nos", "Nada", true);
+        Tarea a = new Tarea("Nada", "Nada", "Nos", "M", false);
+
+        listaTareas.add(n);
+        listaTareas.add(b);
+        listaTareas.add(a);
+
 
 
         tableViewTareas.setItems(listaTareas);
@@ -197,16 +207,12 @@ public class CrearTareaController  {
                 stage.setScene(new Scene(root));
                 stage.setTitle("Editar Tareas");
                 stage.show();
-                EditorTareaController controller = lodaer.getController();
-                controller.setModificarPre(precondiciones);
-                controller.setModificarPost(postcondiciones);
-                controller.setComportamiento(instrucciones);
-                /*PruebaController controller = lodaer.getController();
+                PruebaController controller = lodaer.getController();
                 controller.setNombre(nombre);
                 controller.setModificarPre(precondiciones);
                 controller.setModificarPost(postcondiciones);
                 controller.setComportamiento(instrucciones);
-                controller.setTareaOriginal(tareaSeleccionada);*/
+                controller.setTareaOriginal(tareaSeleccionada);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
