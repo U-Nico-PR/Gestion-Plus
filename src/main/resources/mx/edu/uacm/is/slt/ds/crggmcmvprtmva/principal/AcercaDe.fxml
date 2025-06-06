@@ -25,7 +25,7 @@
             <Label text="Marcos Hazel Contreras Rueda         20-003-1862" style="-fx-font-family: 'monospace';"/>
             <Label text="Jonathan Molina Vazquez              21-003-0383" style="-fx-font-family: 'monospace';"/>
             <Label text="Tello Montes De Oca Angel Antonio    19-003-0125" style="-fx-font-family: 'monospace';"/>
-            <Label text="Villanueva Arena Jose Antonio        19-003-0135" style="-fx-font-family: 'monospace';"/>
+            <Label text="Villanueva Arana Jose Antonio        19-003-0135" style="-fx-font-family: 'monospace';"/>
 
             <Label text="Universidad: UACM SLT" style="-fx-font-weight: bold; -fx-padding: 5 0 0 0;"/>
 

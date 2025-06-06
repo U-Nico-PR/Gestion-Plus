@@ -33,15 +33,35 @@ public class EditorTareaController {
     private RadioButton rdbtnPausable;
 
     @FXML
-    private TextField txtComportamiento;
+    public TextField txtComportamiento;
 
     @FXML
-    private TextField txtModPost;
+    public TextField txtModPost;
 
     @FXML
-    private TextField txtModPrecon;
+    public TextField txtModPrecon;
 
     private Tarea tareaActual;
+
+    public String comportamiento;
+    public String modificarPost;
+    public String modificarPre;
+
+    public void setComportamiento(String comportamiento) {
+        this.comportamiento = comportamiento;
+        txtComportamiento.setText(comportamiento);
+    }
+
+    public void setModificarPost(String modificarPost) {
+        this.modificarPost = modificarPost;
+        txtModPost.setText(modificarPost);
+    }
+
+    public void setModificarPre(String modificarPre) {
+        this.modificarPre = modificarPre;
+        txtModPrecon.setText(modificarPre);
+    }
+
 
 
     @FXML

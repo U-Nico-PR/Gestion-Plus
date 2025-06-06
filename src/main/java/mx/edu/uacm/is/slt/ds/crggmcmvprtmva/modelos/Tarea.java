@@ -89,6 +89,7 @@ public class Tarea extends Thread implements IMetodosEstados {
     public String getNombre() {
         return nombre;
     }
+    
 
     public boolean isPausable() {
         return pausable;
