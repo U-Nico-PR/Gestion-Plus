@@ -4,56 +4,55 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.CrearTareaController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.CrearTareaController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
    <children>
-      <Label layoutX="220.0" layoutY="33.0" prefHeight="28.0" prefWidth="137.0" text="Creacion Tarea">
+      <Label text="Crear Nueva Tarea">
          <font>
-            <Font name="System Bold Italic" size="19.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <VBox layoutX="25.0" layoutY="76.0" prefHeight="248.0" prefWidth="222.0">
+      <GridPane hgap="10.0" vgap="10.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="120.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="280.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label fx:id="lblNombre" prefHeight="26.0" prefWidth="222.0" text="Nombre" />
-            <TextField fx:id="txtNombre" />
-            <Label fx:id="lblPrecondiciones" prefHeight="26.0" prefWidth="222.0" text="Precondiciones " />
-            <TextField fx:id="txtPrecondiciones" />
-            <Label fx:id="lblPostcondiciones" prefHeight="26.0" prefWidth="226.0" text="Postcondiciones " />
-            <TextField fx:id="txtCondiciones" />
-            <Label fx:id="lblComportamineto" prefHeight="26.0" prefWidth="226.0" text="Comportamineto Instruciones" />
-            <TextField fx:id="txtComportamientos" />
-            <HBox prefHeight="61.0" prefWidth="231.0">
-               <children>
-                  <Label fx:id="lblPausable" text="Pausable">
-                     <HBox.margin>
-                        <Insets top="19.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ComboBox fx:id="cBoxEstado" prefWidth="150.0">
-                     <HBox.margin>
-                        <Insets left="20.0" top="15.0" />
-                     </HBox.margin>
-                  </ComboBox>
-               </children>
-            </HBox>
+            <Label text="Nombre:" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" />
+            <Label text="Precondiciones:" GridPane.rowIndex="1" />
+            <TextField fx:id="txtPrecondiciones" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Postcondiciones:" GridPane.rowIndex="2" />
+            <TextField fx:id="txtPostcondiciones" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Comportamiento:" GridPane.rowIndex="3" />
+            <TextArea fx:id="txtComportamiento" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Pausable:" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cBoxPausable" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
-      </VBox>
-      <Button fx:id="btnAgregar" layoutX="90.0" layoutY="338.0" mnemonicParsing="false" onAction="#btnAgregar_OneClick" text="Agregar" />
-      <TableView fx:id="tableViewTareas" layoutX="271.0" layoutY="93.0" prefHeight="197.0" prefWidth="312.0">
-        <columns>
-          <TableColumn fx:id="tlNombre" prefWidth="99.3333740234375" text="Nombre" />
-          <TableColumn fx:id="tlEstado" prefWidth="110.00006103515625" text="Estado Actual" />
-            <TableColumn fx:id="tlPausable" minWidth="9.33331298828125" prefWidth="101.33331298828125" text="Pausable" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnModificar" layoutX="368.0" layoutY="326.0" mnemonicParsing="false" onAction="#btnModificar_OneClick" text="Modificar" />
-      <Button fx:id="btnVolver" layoutX="485.0" layoutY="326.0" mnemonicParsing="false" onAction="#btnVolver_OneClick" text="Volver" />
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="61.0" prefWidth="231.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#btnAgregar_OnClick" prefWidth="100.0" text="Agregar" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#btnCancelar_OnClick" prefWidth="100.0" text="Cancelar" />
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>

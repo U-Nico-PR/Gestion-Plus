@@ -5,89 +5,72 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane layoutX="192.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <right>
-            <VBox alignment="CENTER" prefHeight="336.0" prefWidth="145.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="acercaDe" mnemonicParsing="false" onAction="#acercaDe_OnClick" style="-fx-background-color: #9ACBD0;" text="Acerca De">
-                     <VBox.margin>
-                        <Insets bottom="40.0" top="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="crearOperacion" mnemonicParsing="false" onAction="#crearOperacion_OnClick" style="-fx-background-color: #1DCD9F;" text="Crear Operación">
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="eliminarOperacion" mnemonicParsing="false" onAction="#eliminarOperacion_OnClick" style="-fx-background-color: #1DCD9F;" text="Eliminar Operación">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="tareas" mnemonicParsing="false" onAction="#Operaciones_OnClick" style="-fx-background-color: #1DCD9F;" text="Editar Operacion">
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="salir" mnemonicParsing="false" onAction="#salir_OnClick" style="-fx-background-color: #FF0B55;" text="Salir del Sistema">
-                     <VBox.margin>
-                        <Insets top="60.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </VBox>
-         </right>
-         <center>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <content>
-                  <TableView prefHeight="334.0" prefWidth="470.0">
-                    <columns>
-                      <TableColumn fx:id="colOperacion" minWidth="150.0" prefWidth="150.0" resizable="false" text="Operación" />
-                      <TableColumn fx:id="colEstado" minWidth="150.0" prefWidth="150.0" text="Estado" />
-                        <TableColumn minWidth="150.0" prefWidth="150.0" text="Destalles" />
-                    </columns>
-                  </TableView>
-               </content>
-            </ScrollPane>
-         </center>
-         <top>
-            <Pane prefHeight="64.0" prefWidth="600.0" BorderPane.alignment="TOP_CENTER">
-               <children>
-                  <Text layoutX="143.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestor de Operaciones" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold Italic" size="30.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Pane>
-         </top>
-      </BorderPane>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.GestorDeOperacionesController">
+   <top>
+      <Pane prefHeight="64.0" prefWidth="600.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <Text layoutX="175.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestor de Operaciones" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <TableView fx:id="tblOperaciones" prefHeight="334.0" prefWidth="470.0">
+               <columns>
+                  <TableColumn fx:id="colOperacion" minWidth="150.0" prefWidth="250.0" text="Operación" />
+                  <TableColumn fx:id="colEstado" minWidth="150.0" prefWidth="150.0" text="Estado" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </center>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="336.0" prefWidth="180.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+         <children>
+            <Button fx:id="btnCrearOperacion" mnemonicParsing="false" onAction="#crearOperacion_OnClick" prefWidth="150.0" text="Crear Operación">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEditarOperacion" mnemonicParsing="false" onAction="#editarOperacion_OnClick" prefWidth="150.0" text="Ver / Editar Operación">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEliminarOperacion" mnemonicParsing="false" onAction="#eliminarOperacion_OnClick" prefWidth="150.0" text="Eliminar Operación">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Pane VBox.vgrow="ALWAYS" />
+            <Button fx:id="acercaDe" mnemonicParsing="false" onAction="#acercaDe_OnClick" prefWidth="150.0" text="Acerca De">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="salir" mnemonicParsing="false" onAction="#salir_OnClick" prefWidth="150.0" style="-fx-background-color: #FF6347;" text="Salir del Sistema" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </right>
+</BorderPane>

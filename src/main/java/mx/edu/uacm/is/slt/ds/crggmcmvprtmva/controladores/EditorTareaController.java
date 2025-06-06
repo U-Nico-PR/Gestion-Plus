@@ -3,140 +3,98 @@ package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.EnumEstado;
+import javafx.stage.Stage;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Tarea;
 
 public class EditorTareaController {
 
     @FXML
-    private Button btnCancelar;
-
+    private TextField txtNombre;
+    @FXML
+    private TextField txtPrecondiciones;
+    @FXML
+    private TextField txtPostcondiciones;
+    @FXML
+    private TextArea txtComportamiento;
+    @FXML
+    private ComboBox<String> cBoxPausable;
     @FXML
     private Button btnGuardar;
-
     @FXML
-    private Label lblComportamiento;
-
-    @FXML
-    private Label lblModificarPost;
-
-    @FXML
-    private Label lblModificarPre;
-
-    @FXML
-    private Label lblPausable;
-
-    @FXML
-    private Label lblTituloEditorTareas;
-
-    @FXML
-    private RadioButton rdbtnPausable;
-
-    @FXML
-    public TextField txtComportamiento;
-
-    @FXML
-    public TextField txtModPost;
-
-    @FXML
-    public TextField txtModPrecon;
+    private Button btnCancelar;
 
     private Tarea tareaActual;
+    private boolean esNuevaTarea = true;
 
-    public String comportamiento;
-    public String modificarPost;
-    public String modificarPre;
+    // Método para inicializar los datos de una tarea existente
+    public void initData(Tarea tarea) {
+        this.tareaActual = tarea;
+        this.esNuevaTarea = false;
 
-    public void setComportamiento(String comportamiento) {
-        this.comportamiento = comportamiento;
-        txtComportamiento.setText(comportamiento);
+        txtNombre.setText(tarea.getNombre());
+        txtPrecondiciones.setText(tarea.getPrecondiciones());
+        txtPostcondiciones.setText(tarea.getPostcondiciones());
+        txtComportamiento.setText(tarea.getInstrucciones());
+        cBoxPausable.setValue(tarea.isPausable() ? "Si" : "No");
     }
-
-    public void setModificarPost(String modificarPost) {
-        this.modificarPost = modificarPost;
-        txtModPost.setText(modificarPost);
-    }
-
-    public void setModificarPre(String modificarPre) {
-        this.modificarPre = modificarPre;
-        txtModPrecon.setText(modificarPre);
-    }
-
 
 
     @FXML
-    void Cancelar(ActionEvent event) {
-        limpiarCampos();
-        System.out.println("Edicion cancelada.");
+    public void initialize() {
+        cBoxPausable.getItems().addAll("Si", "No");
     }
 
     @FXML
-    void Guardar_OnClick(ActionEvent event) {
-        // Validar que los campos no estén vacíos
-        if (txtComportamiento.getText().isEmpty() || txtModPost.getText().isEmpty() || txtModPrecon.getText().isEmpty()) {
-            mostrarAlerta("Todos los campos deben estar llenos.");
+    void guardar_OnClick(ActionEvent event) {
+        if (!validarCampos()) {
             return;
         }
 
-        // Capturar datos del formulario
-        String nombre = lblTituloEditorTareas.getText();
-        String precondiciones = txtModPrecon.getText();
-        String postcondiciones = txtModPost.getText();
-        String instrucciones = txtComportamiento.getText();
-        boolean pausable = rdbtnPausable.isSelected();
+        // Si es una tarea nueva, la creamos. Si no, la actualizamos.
+        if (esNuevaTarea) {
+            // Esta lógica ahora está en CrearTareaController para mayor claridad.
+            // Este controlador se enfocará en la edición.
+        } else {
+            // Actualizamos el objeto Tarea existente
+            tareaActual.setNombre(txtNombre.getText());
+            tareaActual.setPrecondiciones(txtPrecondiciones.getText());
+            tareaActual.setPostcondiciones(txtPostcondiciones.getText());
+            tareaActual.setInstrucciones(txtComportamiento.getText());
+            tareaActual.setPausable(cBoxPausable.getValue().equals("Si"));
 
-        try {
-            if (tareaActual == null) {
-                // Crear la tarea si no existe
-                //tareaActual = new Tarea(nombre, precondiciones, postcondiciones, instrucciones, pausable,e);
-                System.out.println("Tarea creada y guardada exitosamente.");
-            } else {
-                // Actualizar los datos de la tarea sin volver a ejecutarla
-                tareaActual.setNombre(nombre);
-                tareaActual.setPrecondiciones(precondiciones);
-                tareaActual.setPostcondiciones(postcondiciones);
-                tareaActual.setInstrucciones(instrucciones);
-                tareaActual.setPausable(pausable);
-                System.out.println("Tarea actualizada exitosamente.");
-            }
-
-            // Mensaje de confirmación
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Tarea Guardada");
-            alert.setHeaderText(null);
-            alert.setContentText("La tarea '" + nombre + "' ha sido guardada.");
-            alert.showAndWait();
-
-        } catch (Exception e) {
-            mostrarAlerta("Ocurrió un error al guardar la tarea: " + e.getMessage());
+            mostrarAlerta("Éxito", "Tarea actualizada correctamente.", Alert.AlertType.INFORMATION);
         }
+
+        cerrarVentana();
     }
 
     @FXML
-    void EjecutarTarea(ActionEvent event) {
-        if (tareaActual != null && tareaActual.getEstado() == EnumEstado.NO_EJECUTADA) {
-            tareaActual.ejecutar();
-            System.out.println("Tarea ejecutada exitosamente.");
-        } else {
-            mostrarAlerta("La tarea ya está en ejecución o no ha sido creada.");
+    void cancelar_OnClick(ActionEvent event) {
+        cerrarVentana();
+    }
+
+    private void cerrarVentana() {
+        Stage stage = (Stage) btnGuardar.getScene().getWindow();
+        stage.close();
+    }
+
+
+    private boolean validarCampos() {
+        if (txtNombre.getText().trim().isEmpty() ||
+                txtPrecondiciones.getText().trim().isEmpty() ||
+                txtPostcondiciones.getText().trim().isEmpty() ||
+                cBoxPausable.getValue() == null) {
+            mostrarAlerta("Error de validación", "Todos los campos son obligatorios.", Alert.AlertType.WARNING);
+            return false;
         }
+        return true;
     }
 
-
-    private void limpiarCampos() {
-        txtModPrecon.clear();
-        txtModPost.clear();
-        txtComportamiento.clear();
-        rdbtnPausable.setSelected(false);
-    }
-
-    private void mostrarAlerta(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Selección requerida");
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
-
 }

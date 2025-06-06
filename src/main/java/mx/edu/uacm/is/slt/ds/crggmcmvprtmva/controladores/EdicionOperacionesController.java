@@ -1,165 +1,145 @@
 package mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores;
 
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.EnumEstado;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Operacion;
 import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.modelos.Tarea;
+import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.principal.HelloApplication;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Optional;
 
 public class EdicionOperacionesController {
 
-    // Atributos definidos en la documentación
-    private Operacion operacionActual = new Operacion("Opc1");
-    private ObservableList<Tarea> tareas = FXCollections.observableArrayList();
-    private EnumEstado estado;
+    private Operacion operacionActual;
 
     @FXML
-    private Button btnCrear;
+    private TableView<Tarea> tblTareas;
+    @FXML
+    private TableColumn<Tarea, String> colTarea;
+    @FXML
+    private TableColumn<Tarea, String> colPausable;
+    @FXML
+    private TableColumn<Tarea, EnumEstado> colEstadoTarea;
+
+    public void initData(Operacion operacion) {
+        this.operacionActual = operacion;
+        tblTareas.setItems(operacion.getTareas());
+    }
 
     @FXML
-    private Button btnDetener;
+    public void initialize() {
+        colTarea.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colEstadoTarea.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colPausable.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().isPausable() ? "Si" : "No")
+        );
+    }
 
     @FXML
-    private Button btnEditar;
+    void ejecutar_OnClick(ActionEvent event) {
+        if (operacionActual != null) {
+            operacionActual.ejecutar();
+            tblTareas.refresh();
+        }
+    }
 
     @FXML
-    private Button btnEliminar;
+    void pausar_OnClick(ActionEvent event) {
+        if (operacionActual != null) {
+            operacionActual.pausar();
+            tblTareas.refresh();
+        }
+    }
 
     @FXML
-    private Button btnModificar;
+    void reanudar_OnClick(ActionEvent event) {
+        if (operacionActual != null) {
+            operacionActual.reanudar();
+            tblTareas.refresh();
+        }
+    }
 
     @FXML
-    private Button btnPausar;
+    void detener_OnClick(ActionEvent event) {
+        if (operacionActual != null) {
+            operacionActual.detener();
+            tblTareas.refresh();
+        }
+    }
 
     @FXML
-    private Button btnRenaudar;
-
-    @FXML
-    private TableColumn<?, ?> colDetalles;
-
-    @FXML
-    private TableColumn<?, ?> colEstado;
-
-    @FXML
-    private TableColumn<?, ?> colTarea;
-
-    @FXML
-    private TableView<Tarea> tbEstados;
-
-    //Metodo para crear tarea
-    @FXML
-    void btnCrear_OneClick(ActionEvent event) {
+    void crearTarea_OnClick(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/CrearTarea.fxml"));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("CrearTarea.fxml"));
             Parent root = loader.load();
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Creacion de Tareas");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-            ((Stage) btnCrear.getScene().getWindow()).close();
+            CrearTareaController controller = loader.getController();
+            controller.initData(this.operacionActual);
 
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Crear Nueva Tarea para: " + operacionActual.getNombre());
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            tblTareas.refresh();
         } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo abrir el editor de tareas.", Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }
 
     @FXML
-    void btnDetener_OneClick(ActionEvent event) {
-        Tarea tareaSeleccionada = tbEstados.getSelectionModel().getSelectedItem();
-        if (tareaSeleccionada != null) {
-            tareaSeleccionada.detener();
-            actualizarTabla();
+    void eliminarTarea_OnClick(ActionEvent event) {
+        Tarea seleccionada = tblTareas.getSelectionModel().getSelectedItem();
+        if (seleccionada != null) {
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmar Eliminación");
+            confirmacion.setHeaderText("¿Eliminar la tarea '" + seleccionada.getNombre() + "'?");
+            Optional<ButtonType> resultado = confirmacion.showAndWait();
+
+            if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+                operacionActual.eliminarTarea(seleccionada);
+                tblTareas.refresh();
+            }
         } else {
-            mostrarAlerta("Debes seleccionar una tarea antes de detenerla.");
+            mostrarAlerta("Atención", "Debe seleccionar una tarea para eliminar.", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
-    void btnEditar_OneClick(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/editorTareas.fxml"));
-            Parent root = loader.load();
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Editar Tareas");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-            ((Stage) btnCrear.getScene().getWindow()).close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void btnEliminar_OneClick(ActionEvent event) {
-        Tarea tareaSeleccionada = (Tarea) tbEstados.getSelectionModel().getSelectedItem();
-        if (tareaSeleccionada != null) {
-            operacionActual.eliminarTarea(tareaSeleccionada);
-            tareas.remove(tareaSeleccionada);
-            actualizarTabla();
-        } else {
-            mostrarAlerta("Debes seleccionar una tarea antes de eliminarla.");
-        }
-    }
-
-    @FXML
-    void btnModificar_OneClick(ActionEvent event) {
-        int selectedIndex = tbEstados.getSelectionModel().getSelectedIndex();
-
-        // Verificar si hay una tarea seleccionada y que no sea la primera (para mover arriba)
+    void moverArriba_OnClick(ActionEvent event) {
+        int selectedIndex = tblTareas.getSelectionModel().getSelectedIndex();
         if (selectedIndex > 0) {
-            Collections.swap(tareas, selectedIndex, selectedIndex - 1);
-            actualizarTabla();
-            tbEstados.getSelectionModel().select(selectedIndex - 1);
-        } else {
-            mostrarAlerta("Modificación inválida");
+            Collections.swap(operacionActual.getTareas(), selectedIndex, selectedIndex - 1);
+            tblTareas.getSelectionModel().select(selectedIndex - 1);
         }
     }
 
     @FXML
-    void btnPausar_OneClick(ActionEvent event) {
-        Tarea tareaSeleccionada = (Tarea) tbEstados.getSelectionModel().getSelectedItem();
-        if (tareaSeleccionada != null) {
-            tareaSeleccionada.pausar();
-            actualizarTabla();
-        } else {
-            mostrarAlerta("Debes seleccionar una tarea antes de pausarla.");
+    void moverAbajo_OnClick(ActionEvent event) {
+        int selectedIndex = tblTareas.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1 && selectedIndex < operacionActual.getTareas().size() - 1) {
+            Collections.swap(operacionActual.getTareas(), selectedIndex, selectedIndex + 1);
+            tblTareas.getSelectionModel().select(selectedIndex + 1);
         }
     }
 
-    @FXML
-    void btnReanudar_OneClick(ActionEvent event) {
-        Tarea tareaSeleccionada = (Tarea) tbEstados.getSelectionModel().getSelectedItem();
-        if (tareaSeleccionada != null) {
-            tareaSeleccionada.reanudar();
-            actualizarTabla();
-        } else {
-            mostrarAlerta("Debes seleccionar una tarea antes de reanudarla.");
-        }
-    }
-
-    private void actualizarTabla(){
-        tbEstados.setItems(tareas);
-        tbEstados.refresh();
-    }
-
-    private void mostrarAlerta(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Selección requerida");
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();

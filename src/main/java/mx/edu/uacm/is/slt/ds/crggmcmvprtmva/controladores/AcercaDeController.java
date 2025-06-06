@@ -5,10 +5,11 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class AcercaDeController {
-    @FXML private Button btnCerrar;
+    @FXML
+    private Button btnCerrar;
 
     @FXML
-    private void btnCerrar_OneClick() {
+    private void btnCerrar_OnClick() {
         Stage stage = (Stage) btnCerrar.getScene().getWindow();
         stage.close();
     }

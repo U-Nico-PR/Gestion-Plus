@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.GestorDeOperacionesController;
 
 import java.io.IOException;
 
@@ -12,9 +11,10 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GestorDeOperaciones.fxml"));
-        fxmlLoader.setController(GestorDeOperacionesController.getInstancia());
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 700, 450);
+        stage.setTitle("Gestión Plus - Gestor de Operaciones");
+        stage.setMinWidth(700);
+        stage.setMinHeight(450);
         stage.setScene(scene);
         stage.show();
     }

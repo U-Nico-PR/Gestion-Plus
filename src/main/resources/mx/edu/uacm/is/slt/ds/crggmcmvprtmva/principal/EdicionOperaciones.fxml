@@ -10,60 +10,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="627.0" style="-fx-background-color: #F3F3E0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.EdicionOperacionesController">
-   <TableView fx:id="tvEstados" layoutX="243.0" layoutY="119.0" prefHeight="137.0" prefWidth="359.0" style="-fx-background-color: #F1EFEC;">
-      <columns>
-         <TableColumn fx:id="colTarea" prefWidth="107.33332824707031" text="Tarea" />
-         <TableColumn fx:id="colEstado" prefWidth="127.3333740234375" text="Estado" />
-         <TableColumn fx:id="colDetalles" prefWidth="124.0" text="Detalles" />
-      </columns>
-   </TableView>
-   <HBox layoutX="372.0" layoutY="328.0" prefHeight="49.0" prefWidth="210.0" style="-fx-background-color: #F1EFEC;">
-      <children>
-         <Button fx:id="btnPausar" mnemonicParsing="false" onAction="#btnPausar_OneClick" style="-fx-background-color: #1DCD9F;" text="Pausar">
-            <HBox.margin>
-               <Insets left="5.0" top="8.0" />
-            </HBox.margin>
-         </Button>
-         <Button fx:id="btnRenaudar" mnemonicParsing="false" onAction="#btnReanudar_OneClick" style="-fx-background-color: #4A90E2;" text="Renaudar">
-            <HBox.margin>
-               <Insets left="10.0" top="8.0" />
-            </HBox.margin>
-         </Button>
-         <Button fx:id="btnDetener" mnemonicParsing="false" onAction="#btnDetener_OneClick" style="-fx-background-color: #FF0B55;" text="Detener">
-            <HBox.margin>
-               <Insets left="10.0" top="8.0" />
-            </HBox.margin>
-         </Button>
-      </children>
-   </HBox>
-   <Label layoutX="343.0" layoutY="22.0" prefHeight="37.0" prefWidth="239.0" text="Edicion De Operaciones">
-      <font>
-         <Font name="System Bold Italic" size="21.0" />
-      </font>
-   </Label>
-   <VBox layoutX="35.0" layoutY="112.0" prefHeight="235.0" prefWidth="151.0" style="-fx-background-color: #F1EFEC;">
-      <children>
-         <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#btnCrear_OneClick" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #1DCD9F;" text="Crear Nueva Tarea">
-            <VBox.margin>
-               <Insets left="10.0" top="40.0" />
-            </VBox.margin>
-         </Button>
-         <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#btnEliminar_OneClick" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #1DCD9F;" text="Eliminar Tarea">
-            <VBox.margin>
-               <Insets left="10.0" top="20.0" />
-            </VBox.margin>
-         </Button>
-         <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#btnModificar_OneClick" prefWidth="124.0" style="-fx-background-color: #1DCD9F;" text="Modificar Orden">
-            <VBox.margin>
-               <Insets left="10.0" top="20.0" />
-            </VBox.margin>
-         </Button>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <Button fx:id="btnEditar" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnEditar_OneClick" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #1DCD9F;" text="Editar Tarea" />
-            </children>
-         </AnchorPane>
-      </children>
-   </VBox>
+<AnchorPane prefHeight="423.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.edu.uacm.is.slt.ds.crggmcmvprtmva.controladores.EdicionOperacionesController">
+   <children>
+      <Label layoutX="219.0" layoutY="22.0" text="Edición De Operaciones">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblTareas" layoutX="195.0" layoutY="73.0" prefHeight="265.0" prefWidth="418.0">
+         <columns>
+            <TableColumn fx:id="colTarea" prefWidth="175.0" text="Tarea" />
+            <TableColumn fx:id="colEstadoTarea" prefWidth="120.0" text="Estado" />
+            <TableColumn fx:id="colPausable" prefWidth="120.0" text="Pausable" />
+         </columns>
+      </TableView>
+      <HBox alignment="CENTER" layoutX="195.0" layoutY="350.0" prefHeight="49.0" prefWidth="418.0" spacing="10.0">
+         <children>
+            <Button fx:id="btnEjecutar" mnemonicParsing="false" onAction="#ejecutar_OnClick" style="-fx-background-color: #28a745;" text="Ejecutar" textFill="WHITE" />
+            <Button fx:id="btnPausar" mnemonicParsing="false" onAction="#pausar_OnClick" style="-fx-background-color: #ffc107;" text="Pausar" />
+            <Button fx:id="btnReanudar" mnemonicParsing="false" onAction="#reanudar_OnClick" style="-fx-background-color: #17a2b8;" text="Reanudar" textFill="WHITE" />
+            <Button fx:id="btnDetener" mnemonicParsing="false" onAction="#detener_OnClick" style="-fx-background-color: #dc3545;" text="Detener" textFill="WHITE" />
+         </children>
+      </HBox>
+      <VBox layoutX="24.0" layoutY="73.0" prefHeight="265.0" prefWidth="151.0" spacing="15.0">
+         <children>
+            <Button fx:id="btnCrearTarea" mnemonicParsing="false" onAction="#crearTarea_OnClick" prefWidth="124.0" text="Crear Tarea" />
+            <Button fx:id="btnEliminarTarea" mnemonicParsing="false" onAction="#eliminarTarea_OnClick" prefWidth="124.0" text="Eliminar Tarea" />
+            <Button fx:id="btnMoverArriba" mnemonicParsing="false" onAction="#moverArriba_OnClick" prefWidth="124.0" text="Mover Arriba" />
+            <Button fx:id="btnMoverAbajo" mnemonicParsing="false" onAction="#moverAbajo_OnClick" prefWidth="124.0" text="Mover Abajo" />
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
