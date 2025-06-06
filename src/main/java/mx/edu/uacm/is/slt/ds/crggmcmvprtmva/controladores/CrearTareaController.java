@@ -84,12 +84,11 @@ public class CrearTareaController  {
         // Configurar columnas
         tlNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tlPausable.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().isPausable() ? "Sí" : "No"));
+                new SimpleStringProperty(cellData.getValue().isPausable() ? "Si" : "No"));
         tlEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
 
-        //tableViewTareas.setItems(listaTareas);
-        verTareas();
+        tableViewTareas.setItems(listaTareas);
     }
 
 
@@ -98,13 +97,13 @@ public class CrearTareaController  {
         if (verificarCasiilas()) {
             String nombre = txtNombre.getText();
             String precondiciones = txtPrecondiciones.getText();
-            String postcondiciones = txtComportamientos.getText();
-            String instrucciones = txtCondiciones.getText();
+            String postcondiciones = txtCondiciones.getText();
+            String instrucciones = txtComportamientos.getText();
             String desicion = cBoxEstado.getValue();
+            EnumEstado en = EnumEstado.NO_EJECUTADA;
             boolean d1 = verificarPausable(desicion);
             Tarea t1 = new Tarea(nombre, precondiciones, postcondiciones, instrucciones, d1);
             listaTareas.add(t1);
-            añadirTarea(t1);
             mostrarAlerta("Tarea creada");
             limpiarCasillas();
         }
@@ -192,7 +191,7 @@ public class CrearTareaController  {
             String instrucciones = tareaSeleccionada.getInstrucciones();
             //Lleva los datos a la ventana de editar tarea
             try {
-                FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/EditorTareas.fxml"));
+                FXMLLoader lodaer = new FXMLLoader(getClass().getResource("/mx/edu/uacm/is/slt/ds/crggmcmvprtmva/principal/Prueba.fxml"));
                 Parent root = lodaer.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
@@ -202,6 +201,12 @@ public class CrearTareaController  {
                 controller.setModificarPre(precondiciones);
                 controller.setModificarPost(postcondiciones);
                 controller.setComportamiento(instrucciones);
+                /*PruebaController controller = lodaer.getController();
+                controller.setNombre(nombre);
+                controller.setModificarPre(precondiciones);
+                controller.setModificarPost(postcondiciones);
+                controller.setComportamiento(instrucciones);
+                controller.setTareaOriginal(tareaSeleccionada);*/
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -211,60 +216,6 @@ public class CrearTareaController  {
 
         return true;
     }
-    //Agrega las Tareas al archivo txt
-    public void añadirTarea(Tarea tarea) {
-        try (BufferedWriter escribir = new BufferedWriter(new FileWriter("Tareas.txt", true))) {
-            escribir.write("Nombre: " + tarea.getNombre() + "\n");
-            escribir.write("Precondiciones: " + tarea.getPrecondiciones() + "\n");
-            escribir.write("Postcondiciones: " + tarea.getPostcondiciones() + "\n");
-            escribir.write("Instrucciones: " + tarea.getInstrucciones() + "\n");
-            escribir.write("Pausable: " + (tarea.isPausable() ? "Si" : "No") + "\n");
-            escribir.write("Estado: " + tarea.getEstado() + "\n");
-            escribir.write("----------------------------------------\n");
-        } catch (IOException e) {
-            System.out.println("Hubo un error al guardar la tarea: " + e.getMessage());
-        }
-    }
-
-    //Ver Tareas del archivo
-
-    public void verTareas() {
-        listaTareas.clear(); // Limpiar la lista antes de cargar nuevos datos
-        try (BufferedReader reader = new BufferedReader(new FileReader("Tareas.txt"))) {
-            String linea;
-            String nombre= "";
-            String precondiciones ="";
-            String postcondiciones="";
-            String instrucciones="";
-            boolean pausable = false;
-            EnumEstado estado = null;
-
-            while ((linea = reader.readLine()) != null) {
-                if (linea.startsWith("Nombre: ")) {
-                    nombre = linea.substring(8);
-                } else if (linea.startsWith("Precondiciones: ")) {
-                    precondiciones = linea.substring(15);
-                } else if (linea.startsWith("Postcondiciones: ")) {
-                    postcondiciones = linea.substring(16);
-                } else if (linea.startsWith("Instrucciones: ")) {
-                    instrucciones = linea.substring(14);
-                } else if (linea.startsWith("Pausable: ")) {
-                    pausable = linea.substring(9).equals("Si");
-                } else if (linea.startsWith("Estado: ")) {
-                    estado = EnumEstado.valueOf(linea.substring(8)); // Convertir texto a Enum
-                } else if (linea.equals("----------------------------------------")) {
-                    // Cuando encuentra la separación, agrega la tarea a la lista
-                    listaTareas.add(new Tarea(nombre, precondiciones, postcondiciones, instrucciones, pausable));
-                }
-            }
-            //Actualiza la tabla cada vez que se agreguen mas
-            tableViewTareas.setItems(listaTareas);
-            System.out.println("Tareas cargadas correctamente.");
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
-        }
-    }
-
 
 
 }
